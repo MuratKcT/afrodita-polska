@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Afrodita Polska – Patyczki zapachowe do domu</title>
+<meta name="description" content="Afrodita – patyczki zapachowe 100 ml w 16 zapachach. Sprzedaż hurtowa i detaliczna w całej Polsce.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a09; --bg2:#15120e; --ink:#f3ede2; --muted:#a59c8c;
+    --gold:#d4b064; --gold-2:#a8823a; --line:rgba(212,176,100,.22);
+    --accent:#3aa0d8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+  /* ---------- header ---------- */
+  header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    padding:18px clamp(16px,4vw,48px);background:linear-gradient(rgba(11,10,9,.9),transparent)}
+  .logo{font-family:"Great Vibes",cursive;font-size:34px;color:var(--gold);line-height:1}
+  .logo small{font-family:Inter,sans-serif;font-size:10px;letter-spacing:.3em;color:var(--muted);margin-left:6px;vertical-align:middle}
+  nav{display:flex;gap:28px;font-size:14px;color:var(--muted)}
+  nav a:hover{color:var(--ink)}
+  @media (max-width:720px){nav{display:none}}
+
+  /* ---------- scroll story ---------- */
+  #story{position:relative;height:520vh}
+  .sticky{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(320px,1fr) 1.2fr;align-items:center;
+    padding:80px clamp(16px,4vw,48px) 24px;overflow:hidden}
+  .sticky::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      radial-gradient(55% 55% at 66% 52%, color-mix(in srgb,var(--accent) var(--glow,14%), transparent), transparent 70%),
+      radial-gradient(40% 40% at 12% 18%, rgba(212,176,100,.07), transparent 70%),
+      var(--bg);
+    transition:background .8s ease}
+
+  .panel{position:relative;height:min(460px,62svh);z-index:2}
+  .card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+    opacity:0;transform:translateY(24px);pointer-events:none;transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1)}
+  .card.on{opacity:1;transform:none;pointer-events:auto}
+  .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+  h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,5.4vw,74px);line-height:1.02;margin:14px 0 18px}
+  h1 em,.card h2 em{font-family:"Great Vibes",cursive;font-style:normal;color:var(--gold);font-size:1.15em;font-weight:400}
+  .card h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(34px,4.4vw,58px);line-height:1.05;margin:12px 0 14px}
+  .lead{color:var(--muted);font-size:17px;max-width:440px}
+  .facts{display:flex;gap:28px;margin:26px 0 28px;flex-wrap:wrap}
+  .facts div{border-left:1px solid var(--line);padding-left:14px}
+  .facts b{display:block;font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:600}
+  .facts span{font-size:12px;color:var(--muted);letter-spacing:.06em}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:14px;
+    transition:transform .2s ease, border-color .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1408}
+  .btn-ghost{border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--gold)}
+  .scroll-hint{margin-top:30px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .scroll-hint i{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:drip 1.8s ease-in-out infinite}
+  @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  .palette{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;max-width:360px}
+  .palette button{width:26px;height:26px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px var(--bg),0 0 0 3px transparent;
+    transition:transform .2s ease, box-shadow .2s ease}
+  .palette button:hover{transform:scale(1.15)}
+  .palette button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--gold)}
+  .scent-now{margin-top:12px;font-size:14px;color:var(--muted)}
+  .scent-now b{color:var(--ink);font-weight:600}
+
+  .stage{position:relative;height:100%;min-height:420px}
+  #scene{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;cursor:grab}
+  #scene:active{cursor:grabbing}
+
+  /* progress rail */
+  .rail{position:absolute;right:clamp(12px,2.4vw,32px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:18px;z-index:5}
+  .rail button{display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .rail button span{opacity:0;transform:translateX(6px);transition:opacity .3s ease, transform .3s ease}
+  .rail button:hover span,.rail button.on span{opacity:1;transform:none}
+  .rail button i{width:10px;height:10px;border-radius:50%;border:1px solid var(--gold);transition:background .3s ease, transform .3s ease}
+  .rail button.done i{background:var(--gold)}
+  .rail button.on i{transform:scale(1.4);background:var(--gold)}
+  .rail button.on{color:var(--ink)}
+  .bar{position:absolute;left:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--accent));width:calc(var(--p,0)*100%);z-index:5}
+
+  @media (max-width:900px){
+    .sticky{grid-template-columns:1fr;grid-template-rows:1fr auto;padding:70px 16px 20px;text-align:center}
+    .stage{grid-row:1;min-height:0}
+    .panel{grid-row:2;height:250px}
+    .card{justify-content:flex-start}
+    h1{font-size:38px;margin:8px 0 10px}
+    .card h2{font-size:34px;margin:6px 0 8px}
+    .lead{margin:0 auto;font-size:15px}
+    .facts{display:none}
+    .cta,.palette{justify-content:center;margin-left:auto;margin-right:auto}
+    .scroll-hint{justify-content:center;margin-top:14px}
+    .rail{top:90px;transform:none;gap:12px}
+    .rail button span{display:none}
+    .card[data-step="4"] .lead{display:none}
+    .card[data-step="4"] .cta{margin-top:12px}
+  }
+
+  /* ---------- scent grid ---------- */
+  .scents{padding:72px clamp(16px,4vw,48px) 96px;border-top:1px solid var(--line);background:var(--bg2)}
+  .scents h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(28px,4vw,42px);text-align:center}
+  .scents p.sub{text-align:center;color:var(--muted);margin:6px 0 32px;font-size:15px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;max-width:1100px;margin:0 auto}
+  .chip{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);
+    background:rgba(255,255,255,.02);font-weight:500;font-size:14px;text-align:left;
+    transition:border-color .25s ease, background .25s ease, transform .2s ease}
+  .chip:hover{border-color:color-mix(in srgb,var(--c) 70%, transparent);background:color-mix(in srgb,var(--c) 8%, transparent)}
+  .chip:active{transform:scale(.97)}
+  .chip[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%, transparent)}
+  .dot{flex:none;width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 12px var(--c)}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+  .no-webgl #scene{display:none}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo">Afrodita<small>POLSKA</small></a>
+  <nav>
+    <a href="#story">Jak używać</a>
+    <a href="#zapachy">Zapachy</a>
+    <a href="#hurt">Hurt</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<section id="story">
+  <div class="sticky">
+    <div class="panel">
+      <div class="card on" data-step="0">
+        <div class="eyebrow">Patyczki zapachowe · Reed diffuser</div>
+        <h1>Zapach, który <em>zostaje</em> w domu</h1>
+        <p class="lead">Przewiń w dół i zobacz, jak w kilka chwil przygotować dyfuzor Afrodita.</p>
+        <div class="facts">
+          <div><b>16</b><span>ZAPACHÓW</span></div>
+          <div><b>100 ml</b><span>POJEMNOŚĆ</span></div>
+          <div><b>8,50 zł</b><span>CENA HURTOWA / SZT.</span></div>
+        </div>
+        <div class="scroll-hint"><i></i>Przewiń</div>
+      </div>
+      <div class="card" data-step="1">
+        <div class="eyebrow">Krok 1</div>
+        <h2>Odkręć nakrętkę</h2>
+        <p class="lead">Zdejmij nakrętkę i odłóż ją – przyda się, gdy zechcesz zamknąć butelkę na czas podróży.</p>
+      </div>
+      <div class="card" data-step="2">
+        <div class="eyebrow">Krok 2</div>
+        <h2>Włóż patyczki</h2>
+        <p class="lead">Umieść patyczki w butelce i rozłóż je lekko w wachlarz.</p>
+      </div>
+      <div class="card" data-step="3">
+        <div class="eyebrow">Krok 3</div>
+        <h2>Pozwól im <em>nasiąknąć</em></h2>
+        <p class="lead">Patyczki powoli chłoną olejek, a zapach zaczyna unosić się w pomieszczeniu.</p>
+      </div>
+      <div class="card" data-step="4">
+        <div class="eyebrow">Gotowe</div>
+        <h2>Ciesz się zapachem</h2>
+        <p class="lead">Odwracaj patyczki raz w tygodniu, aby odświeżyć intensywność. Wybierz swój zapach:</p>
+        <div class="palette" id="palette"></div>
+        <div class="scent-now">Wybrany: <b id="scentName">Ocean</b> – <span id="scentDesc">Świeża morska bryza</span></div>
+        <div class="cta"><a href="#hurt" class="btn btn-gold">Zamów hurtowo</a></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <canvas id="scene" aria-label="Animacja 3D: przygotowanie dyfuzora Afrodita"></canvas>
+    </div>
+
+    <div class="rail" id="rail"></div>
+    <div class="bar"></div>
+  </div>
+</section>
+
+<section class="scents" id="zapachy">
+  <h2>16 zapachów Afrodita</h2>
+  <p class="sub">Kliknij, aby zobaczyć gotowy dyfuzor w kolorze zapachu</p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const SCENTS = [
+  ['Ocean','Ocean','Świeża morska bryza','#3aa0d8'],
+  ['Orchid','Orchidea','Delikatny, kwiatowy','#d65fb0'],
+  ['Bubblegum','Guma balonowa','Słodki i radosny','#ff7ab8'],
+  ['Green Tea & Lemon','Zielona herbata i cytryna','Rześki, cytrusowy','#b9cf3e'],
+  ['Purple Violet','Fiołek','Kwiatowy, elegancki','#8a4fd0'],
+  ['Exotic','Egzotyczne owoce','Tropikalny, owocowy','#f08a3c'],
+  ['Angel','Angel','Miękki, otulający','#e6c27a'],
+  ['Mango','Mango','Soczysty, tropikalny','#ffb02e'],
+  ['Vanilla','Wanilia','Ciepły i słodki','#efdcae'],
+  ['Cherry','Wiśnia','Owocowy, intensywny','#c4162a'],
+  ['Rose','Róża','Romantyczny, kwiatowy','#e8456b'],
+  ['Melon','Melon','Słodki, orzeźwiający','#f6b26b'],
+  ['Hyacinth','Hiacynt','Wiosenny, kwiatowy','#6f7fe0'],
+  ['Lavender','Lawenda','Relaksujący','#9b7fd4'],
+  ['Orange Blossom','Kwiat pomarańczy','Świeży, kwiatowo-cytrusowy','#ff9f45'],
+  ['Jasmin','Jaśmin','Zmysłowy, kwiatowy','#f1e6c4'],
+];
+
+/* story timeline (0..1 of scroll) */
+const STEPS = [            // [start, label]
+  [0.00, 'Start'],
+  [0.08, 'Nakrętka'],
+  [0.32, 'Patyczki'],
+  [0.60, 'Nasiąkanie'],
+  [0.84, 'Gotowe'],
+];
+const clamp = (x, a=0, b=1) => Math.min(b, Math.max(a, x));
+const seg = (p, a, b) => clamp((p - a) / (b - a));
+const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const lerp = (a, b, t) => a + (b - a) * t;
+
+/* ---------- UI ---------- */
+const story = document.getElementById('story');
+const cards = [...document.querySelectorAll('.card')];
+const rail = document.getElementById('rail');
+const grid = document.getElementById('grid');
+const palette = document.getElementById('palette');
+
+function scrollToProgress(p){
+  const top = story.offsetTop, span = story.offsetHeight - innerHeight;
+  scrollTo({ top: top + p * span, behavior:'smooth' });
+}
+STEPS.slice(1).forEach(([start, name], i) => {
+  const b = document.createElement('button');
+  b.innerHTML = `<span>${name}</span><i></i>`;
+  b.setAttribute('aria-label', `Krok: ${name}`);
+  const next = STEPS[i + 2] ? STEPS[i + 2][0] : 1;
+  b.onclick = () => scrollToProgress(i === 3 ? 1 : (start + next) / 2 + 0.04);
+  rail.appendChild(b);
+});
+SCENTS.forEach((s, i) => {
+  const c = document.createElement('button');
+  c.className = 'chip'; c.style.setProperty('--c', s[3]);
+  c.innerHTML = `<span class="dot"></span>${s[1]}`;
+  c.onclick = () => { select(i); scrollToProgress(1); };
+  grid.appendChild(c);
+  const d = document.createElement('button');
+  d.style.setProperty('--c', s[3]); d.title = s[1]; d.setAttribute('aria-label', s[1]);
+  d.onclick = () => select(i);
+  palette.appendChild(d);
+});
+
+/* ---------- renderer ---------- */
+const canvas = document.getElementById('scene');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true }); }
+catch(e){ document.body.classList.add('no-webgl'); throw e; }
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.setClearColor(0x000000, 0);
+
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+
+const keyLight = new THREE.DirectionalLight(0xffe2b0, 2.2); keyLight.position.set(3, 5, 4); scene.add(keyLight);
+const rimLight = new THREE.DirectionalLight(0xffffff, 1.1); rimLight.position.set(-4, 3, -3); scene.add(rimLight);
+const glow = new THREE.PointLight(0xffffff, 0, 6); glow.position.set(0, 0.3, 1.6); scene.add(glow);
+
+/* ---------- helpers ---------- */
+const gold  = new THREE.MeshStandardMaterial({ color:0xd4b064, metalness:1, roughness:0.28 });
+const black = new THREE.MeshStandardMaterial({ color:0x0c0c0c, metalness:0.4, roughness:0.35 });
+function canvasTex(w, h, draw){
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  t.redraw = (...a) => { draw(c.getContext('2d'), w, h, ...a); t.needsUpdate = true; };
+  return t;
+}
+function frame(g, w, h){
+  g.fillStyle = '#0a0a0a'; g.fillRect(0,0,w,h);
+  g.strokeStyle = '#d4b064'; g.lineWidth = 6; g.strokeRect(20,20,w-40,h-40);
+  g.lineWidth = 2; g.strokeRect(34,34,w-68,h-68);
+}
+
+/* ---------- product group (rotates) ---------- */
+const product = new THREE.Group(); scene.add(product);
+
+/* bottle */
+const bottle = new THREE.Group(); product.add(bottle);
+bottle.add(new THREE.Mesh(new RoundedBoxGeometry(1.2, 1.3, 1.2, 6, 0.12),
+  new THREE.MeshPhysicalMaterial({ color:0xffffff, roughness:0.04, transmission:1, thickness:0.6, ior:1.5,
+    clearcoat:1, clearcoatRoughness:0.05, envMapIntensity:1.4, transparent:true })));
+const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.17, 0.16, 40),
+  new THREE.MeshPhysicalMaterial({ color:0xffffff, roughness:0.05, transmission:1, thickness:0.3 }));
+neck.position.y = 0.72; bottle.add(neck);
+const liquidMat = new THREE.MeshPhysicalMaterial({ color:new THREE.Color(SCENTS[0][3]), roughness:0.1, transmission:0.75,
+  thickness:0.8, ior:1.33, transparent:true, opacity:0.82 });
+const liquid = new THREE.Mesh(new RoundedBoxGeometry(1.06, 0.78, 1.06, 4, 0.08), liquidMat);
+liquid.position.y = -0.2; bottle.add(liquid);
+const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.05, 48), gold);
+ring.position.y = 0.66; bottle.add(ring);
+
+const labelTex = canvasTex(512, 512, (g, w, h, name) => {
+  frame(g, w, h); g.fillStyle = '#d4b064'; g.textAlign = 'center';
+  g.font = '110px "Great Vibes"'; g.fillText('Afrodita', 256, 220);
+  g.font = '600 26px Inter'; g.fillText('ROOM SCENT', 256, 310);
+  g.font = '600 34px Inter'; g.fillText(name.toUpperCase(), 256, 360, 420);
+  g.font = '500 24px Inter'; g.fillText('100 ml', 256, 430);
+});
+const label = new THREE.Mesh(new THREE.PlaneGeometry(0.62, 0.62), new THREE.MeshStandardMaterial({ map:labelTex, metalness:0.3, roughness:0.4 }));
+label.position.set(0, -0.06, 0.603); bottle.add(label);
+
+/* cap (separate so it can unscrew) */
+const cap = new THREE.Group(); product.add(cap);
+cap.add(new THREE.Mesh(new RoundedBoxGeometry(0.46, 0.28, 0.46, 4, 0.04), black));
+const capBand = new THREE.Mesh(new THREE.BoxGeometry(0.47, 0.025, 0.47), gold); capBand.position.y = -0.1; cap.add(capBand);
+const CAP_ON = new THREE.Vector3(0, 0.83, 0), CAP_OFF = new THREE.Vector3(1.0, -0.52, 0.45);
+
+/* reeds */
+const REED_L = 2.75, reeds = [], reedFinal = [], tips = [];
+const reedGeo = new THREE.CylinderGeometry(0.011, 0.011, REED_L, 6); reedGeo.translate(0, REED_L/2, 0);
+const wetGeo = new THREE.CylinderGeometry(0.0128, 0.0128, 1, 6); wetGeo.translate(0, 0.5, 0);
+const reedMat = new THREE.MeshStandardMaterial({ color:0x15110d, roughness:0.7 });
+const wetMat = new THREE.MeshStandardMaterial({ color:new THREE.Color(SCENTS[0][3]).multiplyScalar(0.7), roughness:0.3, emissive:0x000000 });
+const dummy = new THREE.Object3D();
+for (let i = 0; i < 8; i++){
+  const a = (i / 8) * Math.PI * 2 + 0.3, tilt = 0.07 + (i % 3) * 0.03;
+  const r = new THREE.Mesh(reedGeo, reedMat);
+  const wet = new THREE.Mesh(wetGeo, wetMat); wet.scale.y = 0.0001; r.add(wet); r.userData.wet = wet;
+  product.add(r); reeds.push(r);
+  const f = { x:Math.cos(a)*0.05, z:Math.sin(a)*0.05, rx:Math.sin(a)*tilt, rz:-Math.cos(a)*tilt };
+  reedFinal.push(f);
+  dummy.position.set(f.x, -0.56, f.z); dummy.rotation.set(f.rx, 0, f.rz); dummy.updateMatrix();
+  tips.push(new THREE.Vector3(0, REED_L, 0).applyMatrix4(dummy.matrix));
+}
+
+/* pedestal + soft shadow */
+const pedestal = new THREE.Mesh(new THREE.CylinderGeometry(1.35, 1.4, 0.14, 96),
+  new THREE.MeshStandardMaterial({ color:0x1b1712, metalness:0.6, roughness:0.25 }));
+pedestal.position.y = -0.73; scene.add(pedestal);
+const edge = new THREE.Mesh(new THREE.TorusGeometry(1.355, 0.012, 8, 128), gold);
+edge.rotation.x = Math.PI/2; edge.position.y = -0.66; scene.add(edge);
+const shadowTex = canvasTex(128, 128, (g) => {
+  const grd = g.createRadialGradient(64,64,0,64,64,64);
+  grd.addColorStop(0,'rgba(0,0,0,.7)'); grd.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle = grd; g.fillRect(0,0,128,128);
+}); shadowTex.redraw();
+const shadow = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 2.4), new THREE.MeshBasicMaterial({ map:shadowTex, transparent:true, depthWrite:false }));
+shadow.rotation.x = -Math.PI/2; shadow.position.y = -0.655; scene.add(shadow);
+
+/* scent particles */
+const N = 160, pos = new Float32Array(N*3), vel = new Float32Array(N), seed = new Float32Array(N);
+function resetP(i, initial){
+  const t = tips[i % tips.length];
+  pos[i*3]   = t.x + (Math.random()-.5)*0.25;
+  pos[i*3+1] = t.y - 1.0 + (initial ? Math.random()*2.4 : Math.random()*0.4);
+  pos[i*3+2] = t.z + (Math.random()-.5)*0.25;
+  vel[i] = 0.12 + Math.random()*0.18; seed[i] = Math.random()*10;
+}
+for (let i = 0; i < N; i++) resetP(i, true);
+const pGeo = new THREE.BufferGeometry(); pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+const sprite = canvasTex(64, 64, (g) => {
+  const grd = g.createRadialGradient(32,32,0,32,32,32);
+  grd.addColorStop(0,'rgba(255,255,255,1)'); grd.addColorStop(.4,'rgba(255,255,255,.35)'); grd.addColorStop(1,'rgba(255,255,255,0)');
+  g.fillStyle = grd; g.fillRect(0,0,64,64);
+}); sprite.redraw();
+const pMat = new THREE.PointsMaterial({ size:0.16, map:sprite, color:new THREE.Color(SCENTS[0][3]),
+  transparent:true, opacity:0, depthWrite:false, blending:THREE.AdditiveBlending });
+product.add(new THREE.Points(pGeo, pMat));
+
+/* ---------- scent selection ---------- */
+let current = 0;
+const target = new THREE.Color(SCENTS[0][3]);
+function select(i){
+  current = i;
+  const s = SCENTS[i];
+  target.set(s[3]);
+  document.documentElement.style.setProperty('--accent', s[3]);
+  glow.color.set(s[3]);
+  labelTex.redraw(s[0]);
+  document.getElementById('scentName').textContent = s[1];
+  document.getElementById('scentDesc').textContent = s[2];
+  grid.querySelectorAll('.chip').forEach((c, k) => c.setAttribute('aria-pressed', k === i));
+  palette.querySelectorAll('button').forEach((c, k) => c.setAttribute('aria-pressed', k === i));
+  twirl += 1.6;
+}
+
+/* ---------- interaction ---------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let dragRot = 0, twirl = 0, dragging = false, lastX = 0, mx = 0, my = 0;
+canvas.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; canvas.setPointerCapture(e.pointerId); });
+canvas.addEventListener('pointermove', e => { if (dragging){ dragRot += (e.clientX - lastX) * 0.012; lastX = e.clientX; } });
+['pointerup','pointercancel'].forEach(t => canvas.addEventListener(t, () => dragging = false));
+addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
+
+let target_p = 0, p = 0, activeStep = -1;
+function readScroll(){
+  const span = story.offsetHeight - innerHeight;
+  target_p = clamp((scrollY - story.offsetTop) / span);
+}
+addEventListener('scroll', readScroll, { passive:true });
+
+let narrow = false;
+function resize(){
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; narrow = w / h < 0.9;
+  camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(canvas);
+
+/* ---------- timeline → scene ---------- */
+function apply(p, t, dt){
+  const lift = 0;
+  // 1. cap unscrews, then is set down beside the bottle
+  const sCap = seg(p, 0.08, 0.30), up = ease(seg(sCap, 0, 0.5)), away = ease(seg(sCap, 0.5, 1));
+  cap.rotation.y = -up * Math.PI * 3;
+  cap.position.set(
+    lerp(CAP_ON.x, CAP_OFF.x, away),
+    lerp(CAP_ON.y + lift + up * 0.35, CAP_OFF.y, away) + Math.sin(Math.PI * away) * 0.35,
+    lerp(CAP_ON.z, CAP_OFF.z, away));
+  // 2. reeds slide in one by one, then fan out
+  const sReed = seg(p, 0.32, 0.58);
+  reeds.forEach((r, i) => {
+    const k = easeOut(seg(sReed, i * 0.06, i * 0.06 + 0.5)), f = reedFinal[i], fan = ease(seg(sReed, 0.55, 1));
+    r.visible = k > 0;
+    r.position.set(f.x, lerp(3.8, -0.56, k), f.z);
+    r.rotation.set(f.rx * fan, 0, f.rz * fan);
+    // 3. reeds soak up oil from the bottom
+    r.userData.wet.scale.y = Math.max(0.0001, ease(seg(p, 0.60, 0.84)) * (1.55 + (i % 3) * 0.12));
+  });
+  // 4. scent blooms
+  const bloom = seg(p, 0.68, 0.95);
+  pMat.opacity = 0.9 * bloom;
+  glow.intensity = 6 * bloom;
+  document.documentElement.style.setProperty('--glow', `${8 + bloom * 16}%`);
+
+  // camera choreography: close on the closed bottle → pull back to frame the reeds
+  const pull = ease(seg(p, 0.2, 0.6));
+  const dist = lerp(6.0, 7.4, pull) + (narrow ? 2.2 : 0);
+  const lookY = lerp(0.35, 1.0, pull) + lift * 0.55;
+  camera.position.set(mx * 0.6, lerp(1.0, 1.3, pull) - my * 0.4, dist);
+  camera.lookAt(0, lookY, 0);
+
+  // rotation: scroll turns the product a full circle; idle sway; drag springs back
+  if (!dragging) dragRot *= Math.exp(-dt * 1.5);
+  const tw = twirl * Math.min(1, dt * 4); twirl -= tw;
+  product.userData.tw = (product.userData.tw || 0) + tw;
+  const sway = reduce ? 0 : Math.sin(t * 0.35) * 0.3;
+  const rotY = p * Math.PI * 2 + sway + dragRot + product.userData.tw;
+  product.rotation.y = rotY;
+}
+
+function updateUI(p){
+  let step = 0;
+  STEPS.forEach(([s], i) => { if (p >= s) step = i; });
+  if (step !== activeStep){
+    activeStep = step;
+    cards.forEach((c, i) => c.classList.toggle('on', i === step));
+    [...rail.children].forEach((b, i) => { b.classList.toggle('on', i + 1 === step); b.classList.toggle('done', i + 1 < step); });
+  }
+  document.documentElement.style.setProperty('--p', p.toFixed(4));
+}
+
+/* ---------- loop ---------- */
+const clock = new THREE.Clock();
+function loop(){
+  const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
+  p += (target_p - p) * (1 - Math.exp(-dt * 6));
+  apply(p, t, dt);
+  updateUI(target_p);
+
+  liquidMat.color.lerp(target, 0.06);
+  pMat.color.lerp(target, 0.06);
+  wetMat.color.lerp(new THREE.Color().copy(target).multiplyScalar(0.7), 0.06);
+
+  if (pMat.opacity > 0.01){
+    for (let i = 0; i < N; i++){
+      pos[i*3+1] += vel[i] * dt;
+      pos[i*3]   += Math.sin(t*0.8 + seed[i]) * 0.0015;
+      pos[i*3+2] += Math.cos(t*0.7 + seed[i]) * 0.0015;
+      if (pos[i*3+1] > 4.0) resetP(i, false);
+    }
+    pGeo.attributes.position.needsUpdate = true;
+  }
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+}
+
+Promise.all([document.fonts.load('110px "Great Vibes"'), document.fonts.load('600 30px Inter')]).finally(() => {
+  select(0); twirl = 0;
+  resize(); readScroll(); p = target_p; loop();
+});
+</script>
+</body>
+</html>
