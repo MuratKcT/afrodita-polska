@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Współpraca hurtowa – Afrodita Polska</title>
+<meta name="description" content="Patyczki zapachowe Afrodita dla sklepów, salonów, hoteli i hurtowni. Wypełnij formularz – przygotujemy indywidualną ofertę hurtową.">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  main{padding:120px clamp(16px,4vw,48px) 80px;position:relative}
+  main::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:radial-gradient(50% 40% at 80% 10%, rgba(212,176,100,.10), transparent 70%),
+               radial-gradient(40% 40% at 0% 60%, rgba(58,160,216,.06), transparent 70%), var(--bg)}
+  .layout{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start}
+  .layout > *,.row > *{min-width:0}
+  .field input,.field select,.field textarea{width:100%}
+  h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1.04;margin:12px 0 16px}
+  h1 em{font-family:"Great Vibes",cursive;font-style:normal;color:var(--gold);font-weight:400;font-size:1.15em}
+  .lead{color:var(--muted);font-size:17px;max-width:460px}
+  .perks{list-style:none;margin:32px 0;display:grid;gap:16px}
+  .perks li{display:flex;gap:14px;align-items:flex-start}
+  .perks i{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);font-style:normal;font-family:"Cormorant Garamond",serif;font-size:18px}
+  .perks b{display:block;font-weight:600}
+  .perks span{font-size:14px;color:var(--muted)}
+  .direct{border-top:1px solid var(--line);padding-top:20px;font-size:14px;color:var(--muted)}
+  .direct a{color:var(--gold)}
+
+  form{background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,36px);display:grid;gap:16px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .req{color:var(--gold)}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .actions .btn{flex:1;min-width:200px}
+  .hint{font-size:12px;color:var(--muted)}
+  .error{font-size:13px;color:#ff8a7a;min-height:1em}
+  .field input:invalid:not(:placeholder-shown){border-color:#a5483d}
+
+  @media (max-width:900px){.layout{grid-template-columns:1fr;gap:36px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">Afrodita<small>POLSKA</small></a>
+  <nav>
+    <a href="index.html#story">Jak używać</a>
+    <a href="index.html#sklep">Zapachy</a>
+    <a href="hurt.html" style="color:var(--ink)">Dla firm</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="index.html#sklep" class="nav-cta">Sklep</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap layout">
+    <div>
+      <div class="eyebrow">Współpraca hurtowa</div>
+      <h1>Afrodita w <em>Twoim</em> sklepie</h1>
+      <p class="lead">Prowadzisz sklep, salon, hotel lub hurtownię? Wypełnij formularz – przygotujemy dla Ciebie indywidualną ofertę hurtową.</p>
+      <ul class="perks">
+        <li><i>16</i><div><b>16 zapachów w jednej kolekcji</b><span>Eleganckie czarno-złote opakowania, które dobrze wyglądają na półce.</span></div></li>
+        <li><i>%</i><div><b>Indywidualne ceny dla firm</b><span>Cena zależy od wielkości i regularności zamówień.</span></div></li>
+        <li><i>5</i><div><b>Obsługa w 5 językach</b><span>Polski, English, українська, русский, Türkçe.</span></div></li>
+      </ul>
+      <div class="direct">Wolisz porozmawiać od razu? Napisz na <a href="https://wa.me/48502599935" target="_blank" rel="noopener">WhatsApp: +48 502 599 935</a> lub <a href="mailto:greenglobalspolka@gmail.com">greenglobalspolka@gmail.com</a>.</div>
+    </div>
+
+    <form id="form" novalidate>
+      <div class="row">
+        <div class="field"><label for="company">Nazwa firmy <span class="req">*</span></label><input id="company" name="company" required placeholder=" " autocomplete="organization"></div>
+        <div class="field"><label for="nip">NIP</label><input id="nip" name="nip" inputmode="numeric" placeholder=" " pattern="[0-9 -]{10,13}"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="person">Imię i nazwisko <span class="req">*</span></label><input id="person" name="person" required placeholder=" " autocomplete="name"></div>
+        <div class="field"><label for="city">Miasto</label><input id="city" name="city" placeholder=" " autocomplete="address-level2"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder=" " autocomplete="email"></div>
+        <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" placeholder=" " autocomplete="tel"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="type">Rodzaj działalności</label>
+          <select id="type" name="type">
+            <option>Sklep stacjonarny</option><option>Sklep internetowy</option><option>Hurtownia / dystrybutor</option>
+            <option>Salon kosmetyczny / SPA</option><option>Hotel / apartamenty</option><option>Inne</option>
+          </select></div>
+        <div class="field"><label for="volume">Szacowane zamówienie miesięcznie</label>
+          <select id="volume" name="volume">
+            <option>do 50 szt.</option><option>50–200 szt.</option><option>200–500 szt.</option><option>powyżej 500 szt.</option><option>Jeszcze nie wiem</option>
+          </select></div>
+      </div>
+      <div class="field"><label for="msg">Wiadomość</label><textarea id="msg" name="msg" rows="4" placeholder=" "></textarea></div>
+      <label class="check"><input type="checkbox" id="consent" required>
+        <span>Wyrażam zgodę na kontakt w sprawie oferty hurtowej. Zapoznałem/-am się z <a href="polityka-prywatnosci.html">polityką prywatności</a>. <span class="req">*</span></span></label>
+      <div class="error" id="error" role="alert"></div>
+      <div class="actions">
+        <button type="submit" class="btn btn-wa" data-via="wa">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Wyślij przez WhatsApp</button>
+        <button type="submit" class="btn btn-ghost" data-via="mail">Wyślij e-mailem</button>
+      </div>
+      <p class="hint">Po kliknięciu otworzy się WhatsApp lub Twój program pocztowy z gotową wiadomością – wystarczy ją wysłać. Formularz nie zapisuje danych na naszej stronie.</p>
+    </form>
+  </div>
+</main>
+
+<footer id="kontakt">
+  <div class="wrap foot">
+    <div>
+      <a href="index.html" class="logo">Afrodita</a>
+      <p>Patyczki zapachowe do domu w 16 zapachach.<br>Darmowa dostawa w całej Polsce.</p>
+    </div>
+    <div>
+      <h3>Kontakt</h3>
+      <ul>
+        <li><a href="https://wa.me/48502599935" target="_blank" rel="noopener">WhatsApp: +48 502 599 935</a></li>
+        <li><a href="mailto:greenglobalspolka@gmail.com">greenglobalspolka@gmail.com</a></li>
+        <li>Obsługa: polski, English, українська, русский, Türkçe</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Firma</h3>
+      <p>GreenGlobal<br>ul. Pilchowicka 27/6a<br>02-175 Warszawa</p>
+      <ul style="margin-top:12px">
+        <li><a href="index.html#sklep">Sklep</a></li>
+        <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal"><span>© 2026 GreenGlobal</span><span>Strona nie używa plików cookies.</span></div>
+</footer>
+
+<script>
+const form = document.getElementById('form'), err = document.getElementById('error');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  const problems = [];
+  if (!v('company')) problems.push('nazwę firmy');
+  if (!v('person')) problems.push('imię i nazwisko');
+  if (!v('email') && !v('phone')) problems.push('e-mail lub telefon');
+  if (v('email') && !document.getElementById('email').checkValidity()) problems.push('poprawny adres e-mail');
+  if (!document.getElementById('consent').checked) problems.push('zgodę na kontakt');
+  if (problems.length){ err.textContent = 'Uzupełnij: ' + problems.join(', ') + '.'; return; }
+  err.textContent = '';
+  const lines = [
+    'Dzień dobry! Chcę nawiązać współpracę hurtową – Afrodita.
+',
+    `Firma: ${v('company')}`,
+    v('nip') && `NIP: ${v('nip')}`,
+    `Osoba kontaktowa: ${v('person')}`,
+    v('city') && `Miasto: ${v('city')}`,
+    v('email') && `E-mail: ${v('email')}`,
+    v('phone') && `Telefon: ${v('phone')}`,
+    `Rodzaj działalności: ${v('type')}`,
+    `Szacowane zamówienie: ${v('volume')} / mies.`,
+    v('msg') && `\nWiadomość:\n${v('msg')}`,
+  ].filter(Boolean).join('\n');
+  const via = e.submitter ? e.submitter.dataset.via : 'wa';
+  const url = via === 'mail'
+    ? `mailto:greenglobalspolka@gmail.com?subject=${encodeURIComponent('Współpraca hurtowa – ' + v('company'))}&body=${encodeURIComponent(lines)}`
+    : `https://wa.me/48502599935?text=${encodeURIComponent(lines)}`;
+  if (via === 'mail') location.href = url; else window.open(url, '_blank', 'noopener');
+});
+</script>
+</body>
+</html>
